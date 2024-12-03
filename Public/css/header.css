@@ -1,0 +1,40 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerbody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; 
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
+    width: -webkit-fill-available;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.buttons button { 
+    height: 100%;
+    margin: 0px 20px;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.button:hover {
+    color: rgb(110, 245, 110);
+}
+
+
+.headerbody img {
+    width: 150px;
+}
