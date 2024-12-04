@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./css/loginformstyle.css">
 </head>
-<body>
+<body style="overflow:hidden;">
     <div class="main">
         <div class="main_box">
             <div class="leftside">
@@ -15,18 +15,18 @@
             <div class="rightside">
                 <h2>Login</h2>
                 <form name="login" action="index.php?url=processlogin" method="post">
-                    <table>
+                    <table class="table">
                         <tr>
-                            <td><label for="email">Email</label></td>
-                            <td><input type="text" id="email" name="email" placeholder="Enter your Email"></td>
+                            <td class="label-cell"><label for="email">Email</label></td>
+                            <td class="input-cell"><input type="text" id="email" name="email" placeholder="Enter your Email"></td>
                         </tr>
                         <tr>
-                            <td><label for="password">Password</label></td>
-                            <td><input type="password" id="password" name="password" placeholder="Enter your Password"></td>
+                            <td class="label-cell"><label for="password">Password</label></td>
+                            <td class="input-cell"><input type="password" id="password" name="password" placeholder="Enter your Password"></td>
                         </tr>
                         <?php if (isset($_SESSION['error'])) { ?>
                             <tr>
-                                <td colspan="2"><p style="color: red; text-align: center; margin-top: 10px;margin-bottom:0px"><?php echo $_SESSION['error']; ?></p></td>
+                                <td colspan="2"><p style="color: red; text-align: center; margin-top: 10px; margin-bottom:0px"><?php echo $_SESSION['error']; ?></p></td>
                             </tr>
                         <?php } ?>
                         <tr class="button">
