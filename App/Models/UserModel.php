@@ -7,12 +7,12 @@ use App\Database\Database;
 class UserModel {
     private $conn; 
 
-    public function getUserData($username, $password, Database $database) {
+    public function getUserData($email, $password, Database $database) {
         $conn = $database->getConnection();
     
-        $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
     

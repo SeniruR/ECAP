@@ -9,17 +9,17 @@ session_start();
 class LoginController {
     public function processLogin() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = $_POST['name'] ?? null;
+            $email = $_POST['email'] ?? null;
             $password = $_POST['password'] ?? null;
     
-            if ($username && $password) {
+            if ($email && $password) {
     
                 $database = new Database();
                 $userModel = new UserModel($database);
-                $userData = $userModel->getUserData($username, $password, $database);
+                $userData = $userModel->getUserData($email, $password, $database);
     
                 if ($userData) {
-                    $_SESSION['username'] = $username;
+                    $_SESSION['username'] = $email;
                     header("Location: ../public/index.php");
                     exit();
                 } else {

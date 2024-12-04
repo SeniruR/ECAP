@@ -6,10 +6,10 @@
 </head>
 <body>
     <div class="headerbody">
-        <a href="index.php" target="_parent"><img src="./images/logo-land.png" alt="logo"></a>
+        <a href="home" target="_parent"><img src="./images/logo-land.png" alt="logo"></a>
         <div class="buttons">
-        <a href="login.php" class="button">Login</a>
-        <a href="contactup.php" class="button">Contact Us</a>
+        <a href="Login" class="button">Login</a>
+        <a href="ContactUs" class="button">Contact Us</a>
         </div>
     </div>
 </body>
