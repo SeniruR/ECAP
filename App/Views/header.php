@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
-    <title>ECAP - Sri Lanka</title>
 </head>
 <body>
     <div class="headerbody">

@@ -5,14 +5,17 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../app/Database/Database.php';
 require __DIR__ . '/../app/Models/UserModel.php';
+require __DIR__ . '/../app/Models/ItemModel.php';
 require __DIR__ . '/../app/Controllers/LoginController.php';
 require __DIR__ . '/../app/Controllers/HeaderController.php';
 require __DIR__ . '/../app/Controllers/ContactUsController.php';
+require __DIR__ . '/../app/Controllers/MainController.php';
 
 use App\Database\Database;
 use App\Controllers\LoginController;
 use App\Controllers\HeaderController;
 use App\Controllers\ContactUsController;
+use App\Controllers\MainController;
 
 $database = new Database();
 $db = $database->getConnection();
@@ -20,6 +23,7 @@ $db = $database->getConnection();
 $lcontroller = new LoginController($database);
 $hcontroller = new HeaderController($database);
 $ccontroller = new ContactUsController($database);
+$mcontroller = new MainController($database);
 
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $hcontroller->index();
@@ -34,7 +38,7 @@ switch ($url) {
         $ccontroller->index();
         break;
     default:
-        $lcontroller->index();
+        $mcontroller->index();
         break;
 }
 ?>
