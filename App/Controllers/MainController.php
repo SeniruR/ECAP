@@ -9,7 +9,7 @@ class MainController{
         $database = new Database();
         $ItemModel = new ItemModel($database);
         $ItemData = $ItemModel->getItemsData($database);
-
+        $counter = 0;
         include __DIR__ . '/../Views/index.php';
         exit();
     }

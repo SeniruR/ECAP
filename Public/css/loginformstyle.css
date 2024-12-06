@@ -95,7 +95,7 @@ button{
 }
 
 button:hover{
-    color: white;
+    color: blanchedalmond;
     background-color: rgb(34, 139, 34);
     box-shadow: 2px 2px 5px gray;
 }
@@ -191,7 +191,8 @@ form{
 .contact-details { 
     /* width: 100%;  */
     padding: 20px; 
-    background-color: #f9f9f9; 
+    color: blanchedalmond;
+    background-color: #2e7d32; 
     border-top: 1px solid #ccc; 
     text-align: center; 
 }
@@ -212,7 +213,8 @@ form{
 .scroll-indicator p {
     margin: 0;
     font-size: 14px;
-    color: #555;
+    color: rgb(34, 139, 34);
+    font-weight: bold;
 }
 
 .arrow-down {
@@ -220,8 +222,8 @@ form{
     margin-top: 5px;
     width: 24px;
     height: 24px;
-    border-left: 2px solid #555;
-    border-bottom: 2px solid #555;
+    border-left: 2px solid rgb(34, 139, 34);
+    border-bottom: 2px solid rgb(34, 139, 34);
     transform: rotate(90deg);
     animation: bounce 1.5s infinite;
 }
