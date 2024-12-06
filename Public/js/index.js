@@ -1,1 +1,1 @@
-window.onload = checkVisibility; window.onresize = checkVisibility; document.getElementById('card-container').onscroll = checkVisibility;
+// window.onload = checkVisibility; window.onresize = checkVisibility; document.getElementById('card-container').onscroll = checkVisibility;
