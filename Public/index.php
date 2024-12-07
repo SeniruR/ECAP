@@ -10,12 +10,14 @@ require __DIR__ . '/../app/Controllers/LoginController.php';
 require __DIR__ . '/../app/Controllers/HeaderController.php';
 require __DIR__ . '/../app/Controllers/ContactUsController.php';
 require __DIR__ . '/../app/Controllers/MainController.php';
+require __DIR__ . '/../app/Controllers/FooterController.php';
 
 use App\Database\Database;
 use App\Controllers\LoginController;
 use App\Controllers\HeaderController;
 use App\Controllers\ContactUsController;
 use App\Controllers\MainController;
+use App\Controllers\FooterController;
 
 $database = new Database();
 $db = $database->getConnection();
@@ -24,6 +26,7 @@ $lcontroller = new LoginController($database);
 $hcontroller = new HeaderController($database);
 $ccontroller = new ContactUsController($database);
 $mcontroller = new MainController($database);
+$fcontroller = new footerController($database);
 
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $hcontroller->index();
@@ -36,9 +39,11 @@ switch ($url) {
         break;
     case 'ContactUs':
         $ccontroller->index();
+        $fcontroller->index();
         break;
     default:
         $mcontroller->index();
+        $fcontroller->index();
         break;
 }
 ?>

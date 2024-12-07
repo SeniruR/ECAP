@@ -1,0 +1,17 @@
+footer {
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    /* width: 100%; */
+    /* Adjust background color and padding as needed */
+    padding: 20px;
+    text-align: center;
+    font-size: large;
+    color: blanchedalmond;
+    background-color: #2E7D32;
+}
+
+footer a{
+    text-decoration: none;
+    color:blanchedalmond
+}
