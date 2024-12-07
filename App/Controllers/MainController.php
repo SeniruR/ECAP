@@ -11,6 +11,5 @@ class MainController{
         $ItemData = $ItemModel->getItemsData($database);
         $counter = 0;
         include __DIR__ . '/../Views/index.php';
-        exit();
     }
 }

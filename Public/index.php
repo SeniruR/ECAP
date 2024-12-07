@@ -26,11 +26,10 @@ $lcontroller = new LoginController($database);
 $hcontroller = new HeaderController($database);
 $ccontroller = new ContactUsController($database);
 $mcontroller = new MainController($database);
-$fcontroller = new FooterController($database);
+$fcontroller = new footerController($database);
 
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $hcontroller->index();
-$fcontroller->index();
 switch ($url) {
     case 'Login':
         $lcontroller->form();
@@ -40,9 +39,11 @@ switch ($url) {
         break;
     case 'ContactUs':
         $ccontroller->index();
+        $fcontroller->index();
         break;
     default:
         $mcontroller->index();
+        $fcontroller->index();
         break;
 }
 ?>

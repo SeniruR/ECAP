@@ -2,11 +2,8 @@
 <footer>
     <div class="footerbody">
         <div>
-            Eco Creations and Products
-        </div>
-        <div>
-            <a href="#">About</a>
-            <a href="#">Contact Us</a>
+            Made in ♥ with Eco Creations and Products
         </div>
     </div>
 </footer>
+</html>

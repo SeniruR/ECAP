@@ -8,6 +8,7 @@
     <script src="./js/index.js" defer></script>
 </head>
 <body>
+    <main>
     <!-- <div class="notice">
         Attention: This page is currently under maintenance. If you find any mistakes, please reach out to inform us.
     </div> -->
@@ -48,5 +49,5 @@
             <?php endif; ?>
         </div>
     </div>
+    </main>
 </body>
-</html>
