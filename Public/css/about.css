@@ -1,0 +1,27 @@
+main {
+    background-image: url('../images/about/wooden-texture.jpg'); /* Adjust the path according to your directory structure */
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+}
+.first ,.second, .third{
+    padding: 30px 50px;
+    text-align: justify;
+    font-size: large;
+}
+
+.first{
+    color: white;
+    background-color: rgba(0, 77, 31, 0.5);
+}
+
+.second{
+    color: blanchedalmond;
+    background-color: rgba(46, 125, 50, 1);
+    display: flex;
+    column-gap: 40px;
+}
+
+.third{
+    color: white;
+    background-color: rgb(66, 77, 0, 0.5);
+}

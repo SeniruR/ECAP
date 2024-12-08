@@ -41,6 +41,10 @@ switch ($url) {
         $ccontroller->index();
         $fcontroller->index();
         break;
+    case 'About':
+        $hcontroller->About();
+        $fcontroller->index();
+        break;
     default:
         $mcontroller->index();
         $fcontroller->index();
