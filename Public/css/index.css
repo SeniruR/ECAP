@@ -28,6 +28,7 @@
     position: relative; /* Added for positioning buttons */
     overflow-x: hidden;
     white-space: nowrap;
+    margin: 0px 15px 0px;
 }
 
 .card-container {
