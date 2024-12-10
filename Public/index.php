@@ -45,6 +45,10 @@ switch ($url) {
         $hcontroller->About();
         $fcontroller->index();
         break;
+    case 'Listall':
+        $mcontroller->listall();
+        $fcontroller->index();
+        break;
     default:
         $mcontroller->index();
         $fcontroller->index();

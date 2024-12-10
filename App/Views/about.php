@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="./css/about.css">
 <main>
     <div class='first'>
-        <h3>About Eco Creations and Products</h3>
+        <h2>About Eco Creations and Products</h2>
         <p>Welcome to Eco Creations and Products, 
             your gateway to the vibrant and sustainable world of Sri Lanka's eco-friendly produce. 
             Our mission is to connect small and medium-scale farmers and producers with conscientious consumers around 
