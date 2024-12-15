@@ -24,7 +24,7 @@
     </div>
     <div class="topic">
         <h3>Our Products</h3>
-        <a href="#" class="all-btn">Show all</a>
+        <a href="Listall" class="all-btn">Show all</a>
     </div>
     <div class="card-container-wrapper">
         <div class="card-container" id="card-container">
