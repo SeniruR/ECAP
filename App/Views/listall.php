@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/listall.css">
     <script src="./js/index.js" defer></script>
 </head>
 <body>
     <main class="listall-main">
     <div class="topic">
-        <h3>Our Products</h3>
-        <div>
-            <select id="productTypeFilter">
-                <option value="">All</option>
-                <?php foreach ($ItemData as $data): ?>
-                    <option value="<?php echo $data['type']; ?>"><?php echo $data['type']; ?></option>
-                <?php endforeach; ?>
-            </select>
+        <h2><?php echo $typeData['0']['name'];?></h2>
+        <div class="topic-discription">
+            <p><?php echo $typeData['0']['discription'];?></p>
         </div>
     </div>
     <div class="card-container-wrapper">
         <div class="card-container" id="card-container">
             <?php if (!empty($ItemData)): ?>
                 <?php foreach ($ItemData as $data): ?>
-                    <a href="event.php?no=<?php echo $data['no']; ?>" data-type="<?php echo $data['type']; ?>">
+                    <a href="item?no=<?php echo $data['no']; ?>" data-type="<?php echo $data['type']; ?>">
                         <div class="card">
                             <img src="<?php echo $data['image']?>" alt="Event Image">
                             <div class="card-details">

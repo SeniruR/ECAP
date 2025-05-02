@@ -20,25 +20,24 @@
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    font-size: x-large;
+    font-size: inherit;
     width: 70%;
 }
 
 .card-container-wrapper {
-    position: relative; /* Added for positioning buttons */
-    overflow-x: hidden;
+    position: relative;
+    overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap;
     margin: 0px 15px 0px;
 }
 
 .card-container {
-    display: grid;
-    grid-template-rows: repeat(1, 1fr); /* Initially, show only one row */
-    grid-template-columns: repeat(4, 1fr);
+    display: flex; /* Arrange cards in a row */
     gap: 20px;
     padding: 20px 0px;
-    overflow: hidden;
     max-height: 100%;
+    overflow: hidden;
+
 
     /* ... other existing media queries ... */
 
@@ -46,12 +45,12 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 600px) {
-        grid-template-columns: 1fr;
+    @media (max-width: 300px) {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -59,17 +58,26 @@
 .card-container a {
     text-decoration: none;
     color: black;
+    transition: transform 0.3s ease, color 0.3s ease; 
 }
 
+.card-container a:hover {
+    transform: scale(1.05);
+    color: green;
+}
+
+
 .card {
-    height: 90%;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    width: 250px; /* Set a fixed width for cards */
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 25px;
     padding: 15px;
     text-align: center;
     overflow: hidden;
-    flex-shrink: 0; /* Prevent cards from shrinking on smaller screens */
+    height: 90%;
+    position: relative;
 }
 
 .card img {
@@ -84,7 +92,7 @@
 }
 
 .topic {
-    margin: 25px 10px 0px;
+    margin: 25px 15px 5px;
     font-size: x-large;
     display: flex;
     justify-content: space-between;
@@ -93,6 +101,7 @@
 
 .topic h3 {
     margin: 0px;
+    place-self: anchor-center;
 }
 
 .all-btn {
@@ -102,9 +111,10 @@
     color: black;
     border-radius: 20px;
     border-style: solid;
-    padding: 5px;
+    padding: 8px 12px;
     border-width: 2px;
     border-color: forestgreen;
+    min-width: max-content;
 }
 
 .all-btn:hover {
@@ -129,4 +139,60 @@
 
 .listall-main{
     padding: 0px 10px;
+}
+
+.typepara{
+    align-content: space-evenly;
+    font-size: large;
+    color: #2E7D32;
+    margin: 0px 15px 0px;
+}
+
+hr{
+    width: 98%;
+}
+
+.arrow-btns{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 15px 0px;
+}
+
+.scroll-btn {
+    margin: 0 10px;
+    padding: 8px 12px;
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.scroll-btn:hover {
+    background-color: #1B5E20;
+    transform: scale(1.05);
+}
+
+.newcard {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #2e7d32;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 1;
+    pointer-events: none; 
+}
+
+.card:hover {
+    transform: scale(1.005);
+    transition: transform 0.3s ease;
+}
+
+h3 a{
+    text-decoration: none;
+    color: black;
 }
