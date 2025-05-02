@@ -8,7 +8,9 @@ class MainController{
     public function index(){
         $database = new Database();
         $ItemModel = new ItemModel($database);
-        $ItemData = $ItemModel->getItemsData($database);
+        $type = $_GET['type'] ?? null;
+        $Itemtypes = $ItemModel->getItemsTypeData($type,$database);
+        $ItemData = $ItemModel->getItemsData($type,$database);
         $counter = 0;
         include __DIR__ . '/../Views/index.php';
     }
@@ -16,8 +18,19 @@ class MainController{
     public function listall(){
         $database = new Database();
         $ItemModel = new ItemModel($database);
-        $ItemData = $ItemModel->getItemsData($database);
+        $type = $_GET['type'] ?? null;
+        $typeData = $ItemModel->getItemsTypeData($type,$database);
+        $ItemData = $ItemModel->getItemsData($type,$database);
         $counter = 0;
         include __DIR__ . '/../Views/listall.php';
+    }
+
+    public function item(){
+        $database = new Database();
+        $ItemModel = new ItemModel($database);
+        $no = $_GET['no'] ?? null;
+        $ItemData = $ItemModel->getItemData($no,$database);
+        $getItemImages = $ItemModel->getItemImages($no,$database);
+        include __DIR__ . '/../Views/item.php';
     }
 }
