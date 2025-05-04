@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require __DIR__ . '/../app/Database/Database.php';
 require __DIR__ . '/../app/Models/UserModel.php';
 require __DIR__ . '/../app/Models/ItemModel.php';
-require __DIR__ . '/../app/Models/adm_m';
+require __DIR__ . '/../app/Models/adm_m.php';
 require __DIR__ . '/../app/Controllers/LoginController.php';
 require __DIR__ . '/../app/Controllers/HeaderController.php';
 require __DIR__ . '/../app/Controllers/ContactUsController.php';
@@ -86,6 +86,18 @@ switch ($url) {
         break;
     case 'Logout':
         $lcontroller->logout();
+        break;
+    case 'adm_changestatus':
+        $admcontroller->adm_changestatus();
+        break;
+    case 'adm_remove':
+        $admcontroller->adm_remove();
+        break;
+    case 'adm_changecatstatus':
+        $admcontroller->adm_changecatstatus();
+        break;
+    case 'adm_remove_type':
+        $admcontroller->adm_remove_type();
         break;
     default:
         $mcontroller->index();

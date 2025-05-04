@@ -19,9 +19,14 @@
             box-sizing: border-box;
         }
         .image-container img {
-            width: 100%;
+            width: 80%;
             height: auto;
             border-radius: 20px;
+        }
+
+        .image-container{
+            text-align: center;
+            margin-bottom:20px;
         }
         .thumbnail-container {
             display: flex;
@@ -58,12 +63,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
         }
         .trademark {
             font-size: 12px;
             color: #888;
             margin-top: 10px;
+        }
+        .text-container p{
+            font-size: 14px;
+            margin-top:0px;
+        }
+
+        .priceline p{
+            font-weight: bold;
         }
     </style>
 </head>
@@ -88,11 +100,13 @@
             <p><?php echo $ItemData['content']; ?></p>
             <h4>Benefits</h4>
             <p><?php echo $ItemData['benefits']; ?></p>
+            <hr>
             <div class="priceline">
                 <h4>Price</h4>
                 <p>Rs.<?php echo $ItemData['price']; ?></p>
             </div>
             <?php if (!empty($ItemData['trademark'])): ?>
+                <br>
                 <p class="trademark"><?php echo $ItemData['trademark']; ?></p>
             <?php endif; ?>
         </div>

@@ -31,6 +31,10 @@ class MainController{
         $no = $_GET['no'] ?? null;
         $ItemData = $ItemModel->getItemData($no,$database);
         $getItemImages = $ItemModel->getItemImages($no,$database);
-        include __DIR__ . '/../Views/item.php';
+        if(empty($ItemData)){
+            $this->index();
+        }else{
+            include __DIR__ . '/../Views/item.php';
+        }
     }
 }

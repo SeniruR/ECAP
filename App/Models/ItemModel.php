@@ -11,11 +11,11 @@ class ItemModel {
         $conn = $database->getConnection();
     
         if(!empty($type)) {
-            $sql = "SELECT items.*,itemimages.image FROM items left join itemimages on items.no = itemimages.itemno WHERE type = ? group by items.no";
+            $sql = "SELECT items.*,itemimages.image FROM items left join itemimages on items.no = itemimages.itemno WHERE type = ? and items.inactive_status=0 group by items.no";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("s", $type);
         } else {
-            $sql = "SELECT items.*,itemimages.image FROM items left join itemimages on items.no = itemimages.itemno group by items.no";
+            $sql = "SELECT items.*,itemimages.image FROM items left join itemimages on items.no = itemimages.itemno Where items.inactive_status=0 group by items.no";
             $stmt = $conn->prepare($sql);
         }
         $stmt->execute();
@@ -35,11 +35,11 @@ class ItemModel {
         $conn = $database->getConnection();
     
         if(!empty($type)) {
-            $sql = "SELECT * FROM itemtypes WHERE no = ?";
+            $sql = "SELECT * FROM itemtypes WHERE no = ? and inactive_status=0";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("s", $type);
         } else {
-            $sql = "SELECT * FROM itemtypes";
+            $sql = "SELECT * FROM itemtypes where inactive_status=0";
             $stmt = $conn->prepare($sql);
         }
         $stmt->execute();
@@ -59,7 +59,7 @@ class ItemModel {
         $conn = $database->getConnection();
     
         if(!empty($no)) {
-            $sql = "SELECT items.*,it.no as itno FROM items join itemtypes as it on it.no=items.type WHERE items.no = ?";
+            $sql = "SELECT items.*,it.no as itno FROM items join itemtypes as it on it.no=items.type WHERE items.no = ? and it.inactive_status=0";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("s", $no);
         } else {

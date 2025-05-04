@@ -17,7 +17,6 @@
         </div>
     </div>
     <div class="table-container">
-        
             <style>
                 h2 {
                     margin: 20px 0 10px 0;
@@ -28,28 +27,39 @@
                     align-items: center;
                 }
                 .controls {
-                    margin: 20px 0;
                     display: flex;
                     gap: 10px;
                 }
                 table {
                     width: 100%;
-                    border-collapse: collapse;
+                    border-collapse: separate;
+                    border-spacing: 0;
                     margin: 20px 0;
                     font-size: 16px;
                     text-align: left;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    overflow: hidden;
                 }
+
                 table thead tr {
                     background-color: #f2f2f2;
                     color: #333;
                 }
+
                 table th, table td {
                     padding: 12px 15px;
                     border: 1px solid #ddd;
                 }
+                
+                tr td{
+                    text-align: center;
+                }
+
                 table tbody tr:nth-child(even) {
                     background-color: #f9f9f9;
                 }
+
                 table tbody tr:hover {
                     background-color: #f1f1f1;
                 }
@@ -87,6 +97,64 @@
                 .controls input[type="text"]::placeholder {
                     color: #aaa;
                 }
+                tr{
+                    text-align: center;
+                }
+
+                .action-buttons{
+                    display:flex;
+                    justify-content:center;
+                    gap:8px;
+                }
+                .btn0, .btn1, .btn2, .btn {
+                    display: inline-block;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn0:hover, .btn1:hover, .btn2:hover, .btn:hover{
+                    text-decoration: none;
+                }
+
+                .btn0{
+                    background-color: #007bff;
+                }
+
+                .btn1{
+                    background-color: rgba(46, 125, 50, 1);
+                }
+
+                .btn2{
+                    background-color: rgba(255, 193, 7, 1);
+                }
+
+                .btn1:hover {
+                    background-color: rgba(46, 125, 50, 0.8);
+                }
+
+                .btn2:hover {
+                    background-color: rgba(255, 193, 7, 0.8);
+                }
+
+                .btn-danger {
+                    background-color: #dc3545;
+                }
+
+                .btn-danger:hover {
+                    background-color:rgb(255, 53, 73);
+                }
+                .removebtn{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             </style>
             <?php if (!empty($admitemData)): ?>
             <table id="itemTable">
@@ -94,8 +162,11 @@
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Short Discription</th>
                         <th>Type</th>
-                        <th>View</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,8 +174,21 @@
                         <tr>
                             <td class="Itemimg"><a href="item?no=<?php echo $data['no']; ?>"><img src="<?php echo $data['image']; ?>" alt="Item Image" style="width: 100px; height: auto;"></a></td>
                             <td class="itemName"><?php echo $data['name']; ?></td>
+                            <td class="itemShortDiscription"><?php echo $data['short_dis']; ?></td>
                             <td class="itemType"><?php echo $data['typename']; ?></td>
-                            <td><a href="adm_add?no=<?php echo $data['no']; ?>">Edit</a></td>
+                            <td class="itemPrice"><?php echo $data['price']; ?></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="adm_add?no=<?php echo $data['no']; ?>" class="btn0">Edit</a>
+                                    <br>
+                                    <?php if($data['inactive_status']==0):?>
+                                        <a href="adm_changestatus?status=0&no=<?php echo $data['no']; ?>" class="btn1">Enabled</a>
+                                    <?php else: ?>
+                                        <a href="adm_changestatus?status=1&no=<?php echo $data['no']; ?>" class="btn2">Disabled</a>
+                                    <?php endif;?>
+                                </div>
+                            </td>
+                            <td><div class="removebtn"><a href="adm_remove?no=<?php echo $data['no']; ?>" class="btn btn-danger">X</a></div></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

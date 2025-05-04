@@ -38,6 +38,11 @@ class admController {
     public function adm_types_list(){
         $this->check($this->database);
         $itemtypes = $this->itemModel->getItemsTypeData(null,$this->database);
+        foreach ($itemtypes as &$item) {
+            $item['short_discription'] = htmlspecialchars_decode(str_replace('<br />', '', $item['short_discription'] ?? ''));
+            $item['discription'] = htmlspecialchars_decode(str_replace('<br />', '', $item['discription'] ?? ''));
+        }
+        unset($item);
         include __DIR__ . '/../Views/adm/listtypes.php';
     }
 
@@ -49,12 +54,17 @@ class admController {
             $itemData = $this->itemModel->getItemData($_GET['no'],$this->database);
             $itemImages = $this->itemModel->getItemImages($_GET['no'],$this->database);
             $itemData['images'] = $itemImages;
-            $update=true;
-        }else{
+            $update = true;
+
+            $itemData['short_dis'] = htmlspecialchars_decode(str_replace('<br />', '', $itemData['short_dis']));
+            $itemData['long_dis'] = htmlspecialchars_decode(str_replace('<br />', '', $itemData['long_dis']));
+            $itemData['content'] = htmlspecialchars_decode(str_replace('<br />', '', $itemData['content']));
+            $itemData['benefits'] = htmlspecialchars_decode(str_replace('<br />', '', $itemData['benefits']));
+        } else {
             $itemData = null;
             $itemImages = null;
             $itemData['images'] = 0;
-            $update=false;
+            $update = false;
         }
         
         $typeList = $this->itemModel->getItemsTypeData($type,$this->database);
@@ -154,7 +164,9 @@ class admController {
         $update = false;
 
         if (isset($_GET['no'])) {
-            $categoryData = $this->adm_m->getCategoryData($_GET['no'], $this->database);
+            $categoryData = $this->adm_m->getTypeData($_GET['no'], $this->database);
+            $categoryData['short_discription'] = htmlspecialchars_decode(str_replace('<br />', '', $categoryData['short_discription']));
+            $categoryData['discription'] = htmlspecialchars_decode(str_replace('<br />', '', $categoryData['discription']));
             $update = true;
         } else {
             $categoryData = null;
@@ -189,6 +201,64 @@ class admController {
                 $this->adm_types($success_message);
                 exit();
             }
+        } else {
+            echo "Invalid request.";
+        }
+    }
+    
+    public function adm_changestatus() {
+        $this->check($this->database);
+        if (isset($_GET['no'])){
+            $no = $_GET['no'];
+            $status = $_GET['status'] ?? null;
+            if ($status == 1) {
+                $this->adm_m->changeStatus($no,0,$this->database);
+            } else {
+                $this->adm_m->changeStatus($no,1,$this->database);
+            }
+            header("Location: index.php?url=adm_list");
+            exit();
+        } else {
+            echo "Invalid request.";
+        }
+    }
+
+    public function adm_remove(){
+        $this->check($this->database);
+        if (isset($_GET['no'])) {
+            $no = $_GET['no'];
+            $this->adm_m->removeItem($no,$this->database);
+            header("Location: index.php?url=adm_list");
+            exit();
+        } else {
+            echo "Invalid request.";
+        }
+    }
+
+    public function adm_changecatstatus() {
+        $this->check($this->database);
+        if (isset($_GET['no'])){
+            $no = $_GET['no'];
+            $status = $_GET['status'] ?? null;
+            if ($status == 1) {
+                $this->adm_m->changeCategoryStatus($no,0,$this->database);
+            } else {
+                $this->adm_m->changeCategoryStatus($no,1,$this->database);
+            }
+            header("Location: index.php?url=adm_types_list");
+            exit();
+        } else {
+            echo "Invalid request.";
+        }
+    }
+
+    public function adm_remove_type() {
+        $this->check($this->database);
+        if (isset($_GET['no'])) {
+            $no = $_GET['no'];
+            $this->adm_m->removeCategory($no,$this->database);
+            header("Location: index.php?url=adm_types_list");
+            exit();
         } else {
             echo "Invalid request.";
         }
