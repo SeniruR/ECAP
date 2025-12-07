@@ -1,0 +1,138 @@
+.notice {
+    text-align: center;
+    background-color: yellow;
+    padding: 10px;
+}
+.banner {
+    position: relative;
+    width: 100%;
+}
+.banner img {
+    width: 100%;
+}
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: inherit;
+    width: 70%;
+}
+
+.card-container-wrapper {
+    position: relative;
+    overflow-x: hidden;
+    white-space: nowrap;
+    margin: 0px 15px 0px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px 0px;
+    overflow: hidden;
+    max-height: 100%;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 300px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card-container a {
+    text-decoration: none;
+    color: black;
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.card-container a:hover {
+    transform: scale(1.05);
+    color: green;
+}
+
+.card {
+    height: 90%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 15px;
+    text-align: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.card img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.card .card-details {
+    white-space: normal;
+}
+
+.topic {
+    margin: 35px 15px 0px;
+    font-size: x-large;
+    text-align: center;
+}
+
+.topic h3 {
+    margin: 0px;
+}
+
+.topic-discription {
+    margin: 0 10%;
+    font-size: large;
+    color: #2E7D32;
+}
+
+.all-btn {
+    text-decoration: none;
+    font-size: initial;
+    font-weight: bold;
+    color: black;
+    border-radius: 20px;
+    border-style: solid;
+    padding: 5px;
+    border-width: 2px;
+    border-color: forestgreen;
+}
+
+.all-btn:hover {
+    color: green;
+}
+
+.hidden {
+    display: none;
+}
+
+.intro{
+    background-color: #2E7D32;
+    padding: 60px;
+    font-size: larger;
+    color: blanchedalmond;
+    text-align: center;
+}
+
+.intro p{
+    margin: 0;
+}
+
+.listall-main{
+    padding: 0px 10px;
+}

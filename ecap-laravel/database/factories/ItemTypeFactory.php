@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\ItemType;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ItemTypeFactory extends Factory
+{
+    protected $model = ItemType::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->unique()->word(),
+            'inactive_status' => false,
+            'short_discription' => $this->faker->sentence(),
+            'discription' => $this->faker->paragraph(),
+        ];
+    }
+}

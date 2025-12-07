@@ -1,0 +1,100 @@
+.table-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.label-cell {
+    width: 30%;
+    text-align: left;
+    padding-right: 10px;
+}
+.input-cell {
+    width: 70%;
+}
+.input-cell input, .input-cell textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.formbutton {
+    text-align: center;
+    margin-top: 20px;
+}
+.formbutton button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.formbutton button:hover {
+    background-color: #45a049;
+}
+.myTextarea {
+    resize: none;
+}
+.main_box {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px;
+}
+.rightside {
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.rightside h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.rightside p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.rightside .success-message {
+    color: black;
+    background-color: lightgreen;
+    text-align: center;
+    /* margin-top: 10px; */
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+select {
+    width: 104%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    appearance: none;
+    box-sizing: border-box;
+}
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.trademark{
+    font-size: 12px;
+    color: #555;
+    place-self: center;
+}

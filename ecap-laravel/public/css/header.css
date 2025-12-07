@@ -1,0 +1,63 @@
+* {
+    font-family: sans-serif;
+}
+
+.headerbody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
+    width: -webkit-fill-available;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    font-weight: bold;
+    margin-right: 30px;
+    align-items: center;
+}
+
+/* Use the same button sizing variables as admin CSS */
+:root {
+    --btn-height: 36px;
+    --btn-min-width: 56px;
+    --btn-font-size: 14px;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--btn-min-width);
+    height: var(--btn-height);
+    padding: 6px 12px;
+    font-size: var(--btn-font-size);
+    border-radius: 6px;
+}
+
+.button:hover {
+    color: rgb(34, 139, 34);
+}
+
+.headerbody img {
+    width: 150px;
+    margin: 10px;
+}
+
+body {
+    margin: 0px;
+}
+
+main {
+    min-height: 70vh;
+}
+
+form button.button {
+    font: inherit;
+}
