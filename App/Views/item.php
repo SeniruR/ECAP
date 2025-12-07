@@ -85,7 +85,7 @@
     </div>
     <div class="container">
         <div class="image-container">
-            <img id="mainImage" src="<?php echo $getItemImages[0]['image']; ?>" alt="Image">
+            <img id="mainImage" src="<?php echo isset($getItemImages[0]['image']) ? str_replace('./','/',$getItemImages[0]['image']) : ''; ?>" alt="Image">
             <?php if (count($getItemImages) > 1): ?>
                 <div class="thumbnail-container">
                     <?php foreach ($getItemImages as $image): ?>

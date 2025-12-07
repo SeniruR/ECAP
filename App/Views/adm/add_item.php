@@ -1,5 +1,5 @@
 <?php include_once __DIR__ . '/dash.php'; ?>
-<link rel=stylesheet type="text/css" href="./css/adm/add_item.css">
+<link rel=stylesheet type="text/css" href="/css/adm/add_item.css">
 <main>
     <div class="main_box">
         <div class="rightside">
@@ -71,7 +71,7 @@
                 <div id="image_preview" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
                     <?php if (isset($itemData['images']) && !empty($itemData['images'])): ?>
                     <?php foreach ($itemData['images'] as $image): ?>
-                        <img src="<?php echo is_string($image['image']) ? htmlspecialchars($image['image']) : ''; ?>" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
+                        <img src="<?php echo is_string($image['image']) ? htmlspecialchars(str_replace('./','/',$image['image'])) : ''; ?>" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
                     <?php endforeach; ?>
                     <?php endif; ?>
                 </div>

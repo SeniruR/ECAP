@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECAP</title>
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <script src="./js/index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="/js/index.js" defer></script>
 </head>
 <body>
     <main>
@@ -13,7 +13,7 @@
         Attention: This page is currently under maintenance. If you find any mistakes, please reach out to inform us.
     </div>
     <div class="banner">
-        <img src="./images/index/index_banner.png" alt="Banner Image">
+        <img src="/images/index/index_banner.png" alt="Banner Image">
         <!-- <div class="banner-text">
             <h3>Welcome to ECAP</h3>
             <h5>Discover our exceptional collection of eco-friendly products designed to make a positive impact on the environment.</h5>
@@ -28,11 +28,11 @@
         <?php foreach ($Itemtypes as $type): ?>
             <?php if($countermain>0):?><hr><?php endif;?>
             <div class="topic">
-                <h3><a href="Listall?type=<?php echo $type['no']; ?>" ><?php echo $type['name']; ?></a></h3>
+                <h3><a href="?url=listall&type=<?php echo $type['no']; ?>" ><?php echo $type['name']; ?></a></h3>
                 <div class="arrow-btns">
                     <button class="scroll-btn left" onclick="scrollLeft('card-container-<?php echo $type['no']; ?>')">&lt;</button>
                     <button class="scroll-btn right" onclick="scrollRight('card-container-<?php echo $type['no']; ?>')">&gt;</button>
-                    <a href="Listall?type=<?php echo $type['no']; ?>" class="all-btn">Show all</a>
+                    <a href="?url=listall&type=<?php echo $type['no']; ?>" class="all-btn">Show all</a>
                 </div>
             </div>
             <div class="card-container-wrapper">
@@ -41,18 +41,18 @@
                     <?php if (!empty($ItemData)): ?>
                         <?php foreach ($ItemData as $data): ?>
                             <?php if ($data['type'] == $type['no'] && $counter < 8): ?>
-                            <a href="item?no=<?php echo $data['no']; ?>">
+                            <a href="?url=item&no=<?php echo $data['no']; ?>">
                                 <div class="card">
                                     <?php if (strtotime($data['created']) > time()): ?>
                                         <div class="newcard">
                                             <p>New</p>
                                         </div>
                                     <?php endif; ?>
-                                    <img src="<?php echo $data['image']; ?>" alt="Event Image">
+                                    <img src="<?php echo str_replace('./','/',$data['image']); ?>" alt="Event Image">
                                     <div class="card-details">
                                         <p><?php echo $data['name']; ?></p>
-                                        <hr>
                                         <p><?php echo $data['short_dis']; ?></p>
+                                        <hr>
                                         <p>Rs. <?php echo $data['price']; ?></p>
                                     </div>
                                 </div>
@@ -61,7 +61,9 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p>No results found.</p>
+                        <div class="no-results">
+                            <p>No items available in this category.</p>
+                        </div>
                     <?php endif; ?>
                 </div>
                 
@@ -70,7 +72,9 @@
             <?php $countermain++; ?>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>No results found.</p>
+        <div class="no-results">
+            <p>We apologize for the inconvenience. Currently, there are no results to display. Please check back later or feel free to explore other categories. Thank you for your understanding.</p>
+        </div>
     <?php endif; ?>
     </main>
 </body>

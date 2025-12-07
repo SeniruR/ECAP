@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./css/listall.css">
-    <script src="./js/index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/listall.css">
+    <script src="/js/index.js" defer></script>
 </head>
 <body>
     <main class="listall-main">
@@ -16,13 +16,14 @@
         <div class="card-container" id="card-container">
             <?php if (!empty($ItemData)): ?>
                 <?php foreach ($ItemData as $data): ?>
-                    <a href="item?no=<?php echo $data['no']; ?>" data-type="<?php echo $data['type']; ?>">
+                    <a href="?url=item&no=<?php echo $data['no']; ?>" data-type="<?php echo $data['type']; ?>">
                         <div class="card">
-                            <img src="<?php echo $data['image']?>" alt="Event Image">
+                            <img src="<?php echo str_replace('./','/',$data['image']); ?>" alt="Event Image">
                             <div class="card-details">
                                 <h2><?php echo $data['name']; ?></h2>
-                                <hr>
                                 <p><?php echo $data['short_dis']; ?></p>
+                                <hr>
+                                <p>Rs. <?php echo $data['price']; ?></p>
                             </div>
                         </div>
                     </a>

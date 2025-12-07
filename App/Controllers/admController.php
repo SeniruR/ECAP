@@ -123,6 +123,14 @@ class admController {
             $no = $_POST['no'] ?? null;
             $item_image = $_FILES['item_image'] ?? null;
 
+            $itemImages = $this->itemModel->getItemImages($no,$this->database);
+            foreach ($itemImages as $image) {
+                $file_path = __DIR__ . '/../../Public' . str_replace('./', '/', $image['image']);
+                if (file_exists($file_path)) {
+                    unlink($file_path);
+                }
+            }
+            
             $upload_dir = __DIR__ . '/../../Public/images/products/';
             $uploaded_files = [];
             if (!empty($item_image['tmp_name'][0])) {
@@ -227,6 +235,13 @@ class admController {
         $this->check($this->database);
         if (isset($_GET['no'])) {
             $no = $_GET['no'];
+            $itemImages = $this->itemModel->getItemImages($no,$this->database);
+            foreach ($itemImages as $image) {
+                $file_path = __DIR__ . '/../../Public' . str_replace('./', '/', $image['image']);
+                if (file_exists($file_path)) {
+                    unlink($file_path);
+                }
+            }
             $this->adm_m->removeItem($no,$this->database);
             header("Location: index.php?url=adm_list");
             exit();

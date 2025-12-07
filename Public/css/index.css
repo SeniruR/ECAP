@@ -196,3 +196,15 @@ h3 a{
     text-decoration: none;
     color: black;
 }
+
+.no-results {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin: 20px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+}

@@ -12,7 +12,7 @@
                         <option value="<?php echo $type['name']; ?>"><?php echo $type['name']; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <a href="adm_add" class="dash-btn">Add Item</a>
+                <a href="?url=adm_add" class="dash-btn">Add Item</a>
             </div>
         </div>
     </div>
@@ -172,23 +172,23 @@
                 <tbody>
                     <?php foreach ($admitemData as $data): ?>
                         <tr>
-                            <td class="Itemimg"><a href="item?no=<?php echo $data['no']; ?>"><img src="<?php echo $data['image']; ?>" alt="Item Image" style="width: 100px; height: auto;"></a></td>
+                            <td class="Itemimg"><a href="?url=item&no=<?php echo $data['no']; ?>"><img src="<?php echo str_replace('./','/',$data['image']); ?>" alt="Item Image" style="width: 100px; height: auto;"></a></td>
                             <td class="itemName"><?php echo $data['name']; ?></td>
                             <td class="itemShortDiscription"><?php echo $data['short_dis']; ?></td>
                             <td class="itemType"><?php echo $data['typename']; ?></td>
                             <td class="itemPrice"><?php echo $data['price']; ?></td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="adm_add?no=<?php echo $data['no']; ?>" class="btn0">Edit</a>
+                                    <a href="?url=adm_add&no=<?php echo $data['no']; ?>" class="btn0">Edit</a>
                                     <br>
                                     <?php if($data['inactive_status']==0):?>
-                                        <a href="adm_changestatus?status=0&no=<?php echo $data['no']; ?>" class="btn1">Enabled</a>
+                                        <a href="?url=adm_changestatus&status=0&no=<?php echo $data['no']; ?>" class="btn1">Enabled</a>
                                     <?php else: ?>
-                                        <a href="adm_changestatus?status=1&no=<?php echo $data['no']; ?>" class="btn2">Disabled</a>
+                                        <a href="?url=adm_changestatus&status=1&no=<?php echo $data['no']; ?>" class="btn2">Disabled</a>
                                     <?php endif;?>
                                 </div>
                             </td>
-                            <td><div class="removebtn"><a href="adm_remove?no=<?php echo $data['no']; ?>" class="btn btn-danger">X</a></div></td>
+                            <td><div class="removebtn"><a href="?url=adm_remove&no=<?php echo $data['no']; ?>" class="btn btn-danger">X</a></div></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

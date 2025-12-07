@@ -146,7 +146,7 @@
             <p>List of all categories available in the system.</p>
             <div class="controls">
                 <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterTable()">
-                <a href="adm_types" class="dash-btn">Add Types</a>
+                <a href="?url=adm_types" class="dash-btn">Add Types</a>
             </div>
         </div>
     </div>
@@ -170,18 +170,18 @@
                             <td><?php echo htmlspecialchars($type['discription']); ?></td>
                             <td>
                             <div class="action-buttons">
-                                <a href="adm_types?no=<?php echo $type['no']; ?>" class="btn0">Edit</a>
+                                <a href="?url=adm_types&no=<?php echo $type['no']; ?>" class="btn0">Edit</a>
                                 <br>
                                 <?php if($type['inactive_status']==0):?>
-                                    <a href="adm_changecatstatus?status=0&no=<?php echo $type['no']; ?>" class="btn1">Enabled</a>
+                                    <a href="?url=adm_changecatstatus&status=0&no=<?php echo $type['no']; ?>" class="btn1">Enabled</a>
                                 <?php else: ?>
-                                    <a href="adm_changecatstatus?status=1&no=<?php echo $type['no']; ?>" class="btn2">Disabled</a>
+                                    <a href="?url=adm_changecatstatus&status=1&no=<?php echo $type['no']; ?>" class="btn2">Disabled</a>
                                 <?php endif;?>
                             </div>
                             </td>
                             <td>
                                 <div class="removebtn">
-                                    <a href="adm_remove_type?no=<?php echo $type['no']; ?>" class="btn btn-danger">X</a>
+                                    <a href="?url=adm_remove_type&no=<?php echo $type['no']; ?>" class="btn btn-danger">X</a>
                                 </div>
                             </td>
                         </tr>

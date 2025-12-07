@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="./css/about.css">
+<link rel="stylesheet" type="text/css" href="/css/about.css">
 <main>
     <div class='first'>
         <h2>About Eco Creations and Products</h2>

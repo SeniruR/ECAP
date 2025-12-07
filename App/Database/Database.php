@@ -9,7 +9,7 @@ class Database
 {
     private $host = 'localhost';
     private $user = 'root';
-    private $password = '';
+    private $password = '00000000';
     private $db_name = 'ECAP';
     private $con;
 

@@ -1,5 +1,5 @@
 <?php include_once __DIR__ . '/dash.php'; ?>
-<link rel=stylesheet type="text/css" href="./css/adm/add_item.css">
+<link rel=stylesheet type="text/css" href="/css/adm/add_item.css">
 <main>
     <div class="main_box">
         <div class="rightside">

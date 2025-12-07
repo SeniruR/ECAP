@@ -29,7 +29,7 @@ class adm_m{
     public function getAllitemData(Database $database) {
         $conn = $database->getConnection();
     
-        $sql = "SELECT items.*,itemimages.image,i.name as typename FROM items left join itemimages on items.no = itemimages.itemno join itemtypes as i on i.no= items.type group by items.no";
+        $sql = "SELECT items.*, (SELECT image FROM itemimages WHERE itemno = items.no ORDER BY no LIMIT 1) AS image, i.name as typename FROM items JOIN itemtypes as i on i.no = items.type";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();

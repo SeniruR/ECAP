@@ -32,8 +32,43 @@ $mcontroller = new MainController($database);
 $fcontroller = new footerController($database);
 $admcontroller = new admController($database);
 
+// determine route and page
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $type = isset($_GET['type']) ? $_GET['type'] : '';
+
+// map url to a page identifier for conditional assets
+$page = 'index';
+switch ($url) {
+    case 'Login':
+        $page = 'login';
+        break;
+    case 'Listall':
+        $page = 'listall';
+        break;
+    case 'item':
+        $page = 'item';
+        break;
+    case 'ContactUs':
+        $page = 'contactus';
+        break;
+    case 'About':
+        $page = 'about';
+        break;
+    case 'adm_da':
+    case 'adm_list':
+    case 'adm_add':
+    case 'adm_types':
+    case 'adm_types_list':
+    case 'adm_changestatus':
+    case 'adm_remove':
+    case 'adm_changecatstatus':
+    case 'adm_remove_type':
+        $page = 'admin';
+        break;
+    default:
+        $page = 'index';
+}
+
 $hcontroller->index();
 switch ($url) {
     case 'Login':

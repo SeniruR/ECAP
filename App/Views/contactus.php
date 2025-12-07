@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./css/loginformstyle.css">
-    <script src="./js/contactus.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/loginformstyle.css">
+    <script src="/js/contactus.js" defer></script>
 </head>
 <body>
     <div class="main">
