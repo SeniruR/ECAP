@@ -52,6 +52,12 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica
 .card-sub{color:var(--muted);font-size:0.95rem}
 .card-meta{display:flex;gap:12px;align-items:center;margin-top:8px}
 .card-row{justify-content:space-between;align-items:center}
+.card{padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--card);box-shadow:0 1px 0 rgba(0,0,0,0.02)}
+.card + .card{margin-top:12px}
+.card .card-body{padding:0}
+.card-footer{border-top:1px solid var(--border);padding-top:12px;margin-top:12px;text-align:right}
+.message-body{white-space:pre-wrap;color:#111;line-height:1.5}
+.form-control{width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);box-sizing:border-box}
 .actions{display:flex;gap:8px;align-items:center;justify-content:flex-end;min-width:180px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;min-height:40px;box-sizing:border-box;font-size:14px;line-height:1;margin:0;vertical-align:middle;align-self:center}
 .btn-primary{background:var(--btn-bg);color:var(--btn-contrast);border:1px solid rgba(0,0,0,0.06);font-size:14px}
