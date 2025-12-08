@@ -22,8 +22,15 @@
             @forelse($announcements as $a)
                 <div class="card-row">
                     @if(!empty($a->image))
+                        @php
+                            $img = $a->image;
+                            if ($img && !\Illuminate\Support\Str::startsWith($img, ['http://','https://','/storage/'])) {
+                                // image may be a disk path (e.g. 'announcements/filename.jpg')
+                                $img = \Illuminate\Support\Facades\Storage::url($img);
+                            }
+                        @endphp
                         <div class="card-image">
-                            <img src="{{ $a->image }}" alt="{{ $a->title ?? 'Announcement' }}" loading="lazy">
+                            <img src="{{ $img }}" alt="{{ $a->title ?? 'Announcement' }}" loading="lazy">
                         </div>
                     @endif
                     <div class="card-body">

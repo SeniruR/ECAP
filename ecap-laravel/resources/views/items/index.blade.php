@@ -15,8 +15,14 @@
     @if($announcement)
         <div class="notice announcement-banner">
             @if(!empty($announcement->image))
+                @php
+                    $img = $announcement->image;
+                    if ($img && !\Illuminate\Support\Str::startsWith($img, ['http://','https://','/storage/'])) {
+                        $img = \Illuminate\Support\Facades\Storage::url($img);
+                    }
+                @endphp
                 <div class="announcement-media">
-                    <img src="{{ $announcement->image }}" alt="{{ $announcement->title ?? 'Announcement' }}">
+                    <img src="{{ $img }}" alt="{{ $announcement->title ?? 'Announcement' }}">
                 </div>
             @endif
             <div class="announcement-body">

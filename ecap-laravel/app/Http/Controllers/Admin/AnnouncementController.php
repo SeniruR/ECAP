@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AnnouncementController extends Controller
 {
@@ -30,8 +31,10 @@ class AnnouncementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('announcements', 'public');
-            $data['image'] = '/storage/' . $path;
+            $file = $request->file('image');
+            $filename = Str::uuid()->toString() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('announcements', $filename, 'public');
+            $data['image'] = Storage::url($path);
         }
 
         // Checkbox sends 'on' when checked; use has() to detect it reliably
@@ -56,12 +59,16 @@ class AnnouncementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // remove old
-            if ($announcement->image) {
-                try { @unlink(public_path(ltrim($announcement->image, '/'))); } catch (\Throwable $e) {}
+            // remove old from storage disk if it was stored with Storage::url()
+            if ($announcement->image && str_starts_with($announcement->image, '/storage/')) {
+                $diskPath = ltrim(str_replace('/storage/', '', $announcement->image), '/');
+                try { Storage::disk('public')->delete($diskPath); } catch (\Throwable $e) {}
             }
-            $path = $request->file('image')->store('announcements', 'public');
-            $data['image'] = '/storage/' . $path;
+
+            $file = $request->file('image');
+            $filename = Str::uuid()->toString() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('announcements', $filename, 'public');
+            $data['image'] = Storage::url($path);
         }
 
         // Checkbox sends 'on' when checked; detect presence
@@ -73,7 +80,10 @@ class AnnouncementController extends Controller
 
     public function destroy(Announcement $announcement)
     {
-        if($announcement->image){ try{ @unlink(public_path(ltrim($announcement->image,'/'))); }catch(\Throwable$e){} }
+        if ($announcement->image && str_starts_with($announcement->image, '/storage/')) {
+            $diskPath = ltrim(str_replace('/storage/', '', $announcement->image), '/');
+            try { Storage::disk('public')->delete($diskPath); } catch (\Throwable $e) {}
+        }
         $announcement->delete();
         return redirect()->route('admin.announcements.index')->with('status','Announcement removed');
     }

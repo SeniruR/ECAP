@@ -33,7 +33,13 @@
                 <label>Image (optional)</label>
                 <input type="file" name="image" accept="image/*">
                 @if($announcement->image)
-                    <div style="margin-top:8px"><img src="{{ $announcement->image }}" style="max-width:200px;border-radius:6px;" alt="announcement"></div>
+                    @php
+                        $img = $announcement->image;
+                        if ($img && !\Illuminate\Support\Str::startsWith($img, ['http://','https://','/storage/'])) {
+                            $img = \Illuminate\Support\Facades\Storage::url($img);
+                        }
+                    @endphp
+                    <div style="margin-top:8px"><img src="{{ $img }}" style="max-width:200px;border-radius:6px;" alt="announcement"></div>
                 @endif
             </div>
             <div class="form-row">
