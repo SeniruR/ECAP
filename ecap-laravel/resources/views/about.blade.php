@@ -5,32 +5,40 @@
 @endpush
 
 @section('content')
-    <main>
-        <div class='first'>
-            <h2>About Eco Creations and Products</h2>
-            <p>Welcome to Eco Creations and Products, 
-                your gateway to the vibrant and sustainable world of Sri Lanka's eco-friendly produce. 
-                Our mission is to connect small and medium-scale farmers and producers with conscientious consumers around 
-                the globe, fostering a community that values sustainability, quality, and ethical practices.
-            </p>
-        </div>
-        <div class='second'>
-            <div>
+    <main class="about-page">
+        <header class="about-hero">
+            <div class="container">
+                <h1>About Eco Creations &amp; Products</h1>
+                <p class="lead">Connecting Sri Lanka's eco-conscious producers with buyers worldwide — sustainable, transparent, and community-driven.</p>
+                <p class="hero-cta"><a class="btn btn-primary" href="{{ route('listall') }}">Browse Products</a></p>
+            </div>
+        </header>
+
+        <section class="container about-grid">
+            <article class="card">
                 <h3>Who We Are</h3>
-                <p>
-                Eco Creations and Products is a dedicated platform supporting the diverse and rich agricultural heritage of Sri Lanka. We collaborate with local farmers and producers who are committed to eco-friendly practices, ensuring that their hard work reaches a global audience. Our catalog showcases a wide range of products, from fresh organic produce to handcrafted eco-goods, reflecting the true essence of Sri Lankan sustainability.
-                </p>
-            </div>
-            <div>
+                <p>We are a platform dedicated to showcasing Sri Lanka's eco-friendly produce and handcrafted goods. We partner with small and medium-scale farmers and artisans who use sustainable practices and take pride in their craft.</p>
+            </article>
+
+            <article class="card">
                 <h3>Our Mission</h3>
-                <p>Our mission is to empower small and medium-scale farmers and producers by providing them with an online presence that amplifies their reach and connects them with potential buyers worldwide. We believe in the power of eco-friendly practices and are committed to promoting products that are not only good for the environment but also support the well-being of our local communities.</p>
-            </div>
-        </div>
-        <div class="third">
-            <div>
+                <p>To empower local producers by providing visibility and access to ethical consumers worldwide. We promote sustainability, fair trade, and community resilience through transparent connections between buyers and sellers.</p>
+            </article>
+
+            <article class="card">
                 <h3>What We Offer</h3>
-                <p>At Eco Creations and Products, we offer a comprehensive product catalog that allows you to explore and discover unique eco-friendly products from Sri Lanka. While we are still in the process of implementing online payment features, our current platform enables you to get to know our sellers and directly contact them for purchasing inquiries. This direct connection fosters a sense of trust and transparency between buyers and sellers, ensuring that you receive authentic and high-quality products.</p>
+                <p>A curated catalog of eco-friendly products, direct contact options to sellers, and growing tools to help producers reach new markets. Online payments and advanced commerce features are coming soon.</p>
+            </article>
+        </section>
+
+        <section class="container about-team">
+            <div class="team-intro">
+                <h2>Our Values</h2>
+                <p>We believe in sustainability, transparency, and community. Every product on our site reflects these values — from soil-friendly farming methods to ethical supply chains.</p>
             </div>
-        </div>
+            <div class="team-cta">
+                <a class="btn btn-ghost" href="{{ route('contact') }}">Contact Us</a>
+            </div>
+        </section>
     </main>
 @endsection

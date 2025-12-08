@@ -20,6 +20,31 @@
     align-items: center;
 }
 
+/* Mobile hamburger */
+.hamburger{display:none;border:none;background:transparent;font-size:22px;padding:8px 24px;cursor:pointer}
+
+/* Mobile sidebar */
+.mobile-sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background:#fff;box-shadow:2px 0 24px rgba(0,0,0,0.12);transform:translateX(-110%);transition:transform .22s ease;z-index:12000}
+.mobile-sidebar.open{transform:translateX(0)}
+.mobile-sidebar-inner{padding:18px}
+.mobile-sidebar ul{list-style:none;padding:0;margin:0}
+.mobile-sidebar li{margin:8px 0}
+.mobile-sidebar a,.mobile-sidebar .link-button{display:block;padding:10px;border-radius:6px;color:#0f172a;text-decoration:none}
+.mobile-sidebar .link-button{background:transparent;border:none;font:inherit;cursor:pointer}
+
+@media (max-width:900px){
+    .buttons{display:none}
+    .hamburger{display:inline-flex}
+}
+
+/* Site loader overlay */
+.site-loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:20000;pointer-events:auto;background:rgba(0,0,0,0.35);transition:opacity .24s ease,visibility .24s ease}
+.site-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.site-loader-inner{display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px}
+.site-loader .spinner{width:56px;height:56px;border-radius:50%;border:5px solid rgba(255,255,255,0.22);border-top-color:#ffffff;animation:loader-spin .9s linear infinite}
+.site-loader .loader-text{color:#fff;font-weight:600}
+@keyframes loader-spin{to{transform:rotate(360deg)}}
+
 /* Use the same button sizing variables as admin CSS */
 :root {
     --btn-height: 36px;
@@ -50,14 +75,40 @@
     margin: 10px;
 }
 
+html, body {
+    height: 100%;
+}
 body {
     margin: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Make main take remaining space so footer stays at bottom when content is short */
 main {
-    min-height: 70vh;
+    flex: 1 0 auto;
 }
 
 form button.button {
     font: inherit;
 }
+
+/* Ensure form buttons use the exact same visual rules as anchor .button */
+.buttons button.button,
+.buttons a.button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:6px 12px;
+    height:var(--btn-height);
+    min-width:var(--btn-min-width);
+    font-size:var(--btn-font-size);
+    line-height:1;
+    border-radius:6px;
+    background:transparent;
+    color:inherit;
+    border:none;
+}
+.buttons button.button{appearance:none;-webkit-appearance:none}

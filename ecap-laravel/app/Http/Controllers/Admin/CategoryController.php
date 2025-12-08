@@ -40,9 +40,17 @@ class CategoryController extends Controller
 
     public function destroy(Request $request, $no)
     {
-        $type = ItemType::withCount('items')->findOrFail($no);
-        if ($type->items_count > 0) {
-            return redirect()->route('admin.categories.index')->with('error', 'Cannot remove category while items are assigned to it');
+        $type = ItemType::with('items')->findOrFail($no);
+        $itemsCount = $type->items->count();
+        if ($itemsCount > 0) {
+            // Prepare a small list of items (name + edit url) to show to the admin
+            $items = $type->items->map(function($i){
+                return ['name' => $i->name, 'url' => route('admin.items.edit', $i->getKey())];
+            })->toArray();
+
+            return redirect()->route('admin.categories.index')
+                ->with('error', "Cannot remove category while {$itemsCount} item(s) are assigned to it. Remove all items before deleting the category.")
+                ->with('error_items', $items);
         }
 
         $type->delete();

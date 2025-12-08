@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\ItemImage;
 use App\Models\ItemType;
 use App\Http\Requests\ItemRequest as ItemRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -108,5 +109,25 @@ class ItemController extends Controller
         }
         $item->delete();
         return redirect()->route('admin.items.index')->with('status', 'Item removed');
+    }
+
+    /**
+     * Delete a single item image by id.
+     */
+    public function destroyImage(Request $request, $id)
+    {
+        $img = ItemImage::findOrFail($id);
+
+        // delete file from storage if it was stored in /storage/
+        $path = $img->image;
+        if (str_starts_with($path, '/storage/')) {
+            $diskPath = ltrim(str_replace('/storage/', '', $path), '/');
+            Storage::disk('public')->delete($diskPath);
+        }
+
+        $itemNo = $img->itemno;
+        $img->delete();
+
+        return redirect()->route('admin.items.edit', $itemNo)->with('status', 'Image removed');
     }
 }

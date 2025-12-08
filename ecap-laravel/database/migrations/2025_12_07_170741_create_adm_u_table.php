@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adm_u', function (Blueprint $table) {
-            $table->bigIncrements('no');
-            $table->string('adm_e', 200)->unique();
-            $table->string('adm_p', 1000);
-            $table->string('name', 200)->nullable();
-            $table->timestamps();
-        });
+        // legacy adm_u creation suppressed — table is managed/removed by drop migration
     }
 
     /**
@@ -25,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adm_u');
+        // no-op
     }
 };

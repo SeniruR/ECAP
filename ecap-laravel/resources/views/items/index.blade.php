@@ -9,11 +9,28 @@
 @endpush
 
 @section('content')
-    <div class="notice">
-        Attention: This page is currently under maintenance. If you find any mistakes, please reach out to inform us.
-    </div>
+    @php
+        $announcement = \App\Models\Announcement::where('is_enabled', true)->latest()->first();
+    @endphp
+    @if($announcement)
+        <div class="notice announcement-banner">
+            @if(!empty($announcement->image))
+                <div class="announcement-media">
+                    <img src="{{ $announcement->image }}" alt="{{ $announcement->title ?? 'Announcement' }}">
+                </div>
+            @endif
+            <div class="announcement-body">
+                @if(!empty($announcement->title))
+                    <h3 class="announcement-title">{{ $announcement->title }}</h3>
+                @endif
+                @if(!empty($announcement->content))
+                    <div class="announcement-content">{!! $announcement->content !!}</div>
+                @endif
+            </div>
+        </div>
+    @endif
     <div class="banner">
-        <img src="/images/index/index_banner.png" alt="Banner Image">
+        <img src="/images/index/index_banner.png" alt="Banner Image" loading="lazy">
     </div>
     <div class="intro">
         <p>ECAP is dedicated to promoting sustainable living through a diverse range of eco-friendly products. Our mission is to make a positive impact on the environment by offering innovative solutions that help reduce waste and conserve resources. Join us in our journey towards a greener future and discover how you can contribute to a healthier planet.</p>
@@ -28,12 +45,12 @@
             <div class="topic">
                 <h3><a href="{{ route('listall', ['type' => $type->no]) }}">{{ $type->name }}</a></h3>
                 <div class="arrow-btns">
-                    <button class="scroll-btn left" onclick="scrollLeft('card-container-{{ $type->no }}')">&lt;</button>
-                    <button class="scroll-btn right" onclick="scrollRight('card-container-{{ $type->no }}')">&gt;</button>
+                    <button class="scroll-btn left" data-target="card-wrapper-{{ $type->no }}">&lt;</button>
+                    <button class="scroll-btn right" data-target="card-wrapper-{{ $type->no }}">&gt;</button>
                     <a href="{{ route('listall', ['type' => $type->no]) }}" class="all-btn">Show all</a>
                 </div>
             </div>
-            <div class="card-container-wrapper">
+            <div class="card-container-wrapper" id="card-wrapper-{{ $type->no }}">
                 <div class="card-container" id="card-container-{{ $type->no }}">
                     @php $counter = 0; @endphp
                     @forelse($items as $item)
@@ -49,18 +66,18 @@
                             <a href="{{ route('item.show', ['no' => $item->no]) }}">
                                 <div class="card">
                                     @if(optional($item->created)->isFuture())
-                                        <div class="newcard">
-                                            <p>New</p>
-                                        </div>
+                                        <div class="badge-new">New</div>
                                     @endif
                                     @if($imgSrc)
-                                        <img src="{{ $imgSrc }}" alt="Item Image">
+                                        <div class="media">
+                                            <img src="{{ $imgSrc }}" alt="Item Image" loading="lazy">
+                                        </div>
                                     @endif
                                     <div class="card-details">
-                                        <p>{{ $item->name }}</p>
-                                        <p>{{ $item->short_dis }}</p>
-                                        <hr>
-                                        <p>Rs. {{ $item->price }}</p>
+                                        <h4 class="card-title">{{ $item->name }}</h4>
+                                        <p class="card-desc">{{ $item->short_dis }}</p>
+                                        <div class="card-divider"></div>
+                                        <p class="card-price">LKR {{ number_format($item->price, 2) }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -73,7 +90,7 @@
                     @endforelse
                 </div>
             </div>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
             @php $counterMain++; @endphp
         @endforeach
     @else

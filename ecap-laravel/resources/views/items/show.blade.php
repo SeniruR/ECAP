@@ -29,12 +29,14 @@
                     $mainSrc = '/images/products/logo.png';
                 }
             @endphp
-            <img id="mainImage" src="{{ $mainSrc }}" alt="Image">
+            <div class="media">
+                <img id="mainImage" src="{{ $mainSrc }}" alt="Image" loading="lazy">
+            </div>
             @if($images->count() > 1)
                 <div class="thumbnail-container">
                     @foreach($images as $img)
                         @php $thumb = str_replace('./','/',$img->image); @endphp
-                        <img src="{{ $thumb }}" alt="Thumbnail" onclick="changeImage('{{ $thumb }}')">
+                        <img class="thumb" src="{{ $thumb }}" alt="Thumbnail" loading="lazy" onclick="changeImage('{{ $thumb }}')">
                     @endforeach
                 </div>
             @endif
@@ -48,7 +50,7 @@
             <hr>
             <div class="priceline">
                 <h4>Price</h4>
-                <p>Rs. {{ $item->price }}</p>
+                <p>LKR {{ number_format($item->price, 2) }}</p>
             </div>
             @if(!empty($item->trademark))
                 <br>

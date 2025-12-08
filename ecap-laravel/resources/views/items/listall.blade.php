@@ -27,16 +27,18 @@
                         $imgSrc = '/images/products/logo.png';
                     }
                 @endphp
-                <a href="{{ route('item.show', ['no' => $item->no]) }}" data-type="{{ $item->type }}">
+                    <a href="{{ route('item.show', ['no' => $item->no]) }}" data-type="{{ $item->type }}">
                     <div class="card">
                         @if($imgSrc)
-                            <img src="{{ $imgSrc }}" alt="Item Image">
+                            <div class="media">
+                                <img src="{{ $imgSrc }}" alt="Item Image" loading="lazy">
+                            </div>
                         @endif
                         <div class="card-details">
-                            <h2>{{ $item->name }}</h2>
-                            <p>{{ $item->short_dis }}</p>
-                            <hr>
-                            <p>Rs. {{ $item->price }}</p>
+                            <h2 class="card-title">{{ $item->name }}</h2>
+                            <p class="card-desc">{{ $item->short_dis }}</p>
+                            <div class="card-divider"></div>
+                            <p class="card-price">LKR {{ number_format($item->price, 2) }}</p>
                         </div>
                     </div>
                 </a>

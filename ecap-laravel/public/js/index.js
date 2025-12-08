@@ -23,33 +23,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     leftButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const containerId = button.getAttribute('onclick').match(/'([^']+)'/)[1];
-            scrollLeft(containerId);
+            const containerId = button.dataset.target;
+            scrollContainerLeft(containerId);
         });
     });
 
     rightButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const containerId = button.getAttribute('onclick').match(/'([^']+)'/)[1];
-            scrollRight(containerId);
+            const containerId = button.dataset.target;
+            scrollContainerRight(containerId);
         });
     });
 });
 
-function scrollLeft(containerId) {
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.scrollBy({
+function scrollContainerLeft(containerId) {
+    const target = document.getElementById(containerId);
+    if (target) {
+        target.scrollBy({
             left: -300,
             behavior: 'smooth'
         });
     }
 }
 
-function scrollRight(containerId) {
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.scrollBy({
+function scrollContainerRight(containerId) {
+    const target = document.getElementById(containerId);
+    if (target) {
+        target.scrollBy({
             left: 300,
             behavior: 'smooth'
         });

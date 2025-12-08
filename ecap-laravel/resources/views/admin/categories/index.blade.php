@@ -3,68 +3,68 @@
 @section('content')
     @include('admin.dash')
 
-    <main>
+    @push('styles')
+        <link rel="stylesheet" href="/css/adm/admin-modern.css">
+    @endpush
+
+    <main class="main-admin">
     <div class="topic">
         <h2>Category List</h2>
         <div class="topic-discription">
             <p>List of all categories available in the system.</p>
             <div class="controls">
-                <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterTable()">
-                <a href="{{ route('admin.categories.create') }}" class="dash-btn">Add Types</a>
+                <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterTable()" aria-label="Search categories">
+                <a href="{{ route('admin.categories.create') }}" class="dash-btn">Add Category</a>
             </div>
         </div>
     </div>
     <div class="table-container">
-        <style>
-            table { width:100%; border-collapse: separate; border-spacing:0; margin:20px 0; font-size:16px; text-align:left; border:1px solid #ddd; border-radius:10px; overflow:hidden; }
-            table thead tr { background:#f2f2f2; color:#333; }
-            table th, table td { padding:12px 15px; border:1px solid #ddd; }
-            table tbody tr:nth-child(even){ background:#f9f9f9; }
-            table tbody tr:hover{ background:#f1f1f1 }
-            .controls { display:flex; gap:10px }
-        </style>
+
+        @if(session('error'))
+            <div class="success-message" style="background:#fff4e5;color:#663c00;border:1px solid #f6c37d;padding:10px;margin-bottom:12px;">
+                <strong>Error:</strong> {{ session('error') }}
+                @if(session('error_items') && is_array(session('error_items')))
+                    <div style="margin-top:8px;font-size:0.95rem">
+                        <div>Items in this category (click to edit):</div>
+                        <ul style="margin:6px 0;padding-left:18px">
+                            @foreach(session('error_items') as $it)
+                                <li><a href="{{ $it['url'] }}">{{ $it['name'] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        @endif
+
 
         @php $types = \App\Models\ItemType::orderBy('name')->get(); @endphp
 
         @if($types->isNotEmpty())
-            <table id="itemTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Short Description</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($types as $type)
-                        <tr>
-                            <td>{{ $type->name }}</td>
-                            <td>{{ $type->short_discription }}</td>
-                            <td>{{ $type->discription }}</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <a href="{{ route('admin.categories.edit', $type->no) }}" class="btn0">Edit</a>
-                                    <form action="{{ route('admin.categories.toggle', $type->no) }}" method="POST" style="display:inline;margin-left:6px;">
-                                        @csrf
-                                        <button type="submit" class="{{ $type->inactive_status == 0 ? 'btn1' : 'btn2' }}">{{ $type->inactive_status == 0 ? 'Enabled' : 'Disabled' }}</button>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="removebtn">
-                                    <form action="{{ route('admin.categories.destroy', $type->no) }}" method="POST" onsubmit="return confirm('Remove this category?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">X</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div id="itemTable">
+                @foreach($types as $type)
+                    <div class="card-row" data-name="{{ strtolower($type->name) }}">
+                        <div class="card-body">
+                            <div class="card-title">{{ $type->name }}</div>
+                            <div class="card-sub">{{ $type->short_discription }}</div>
+                            <div class="card-sub" style="margin-top:6px">{{ Str::limit($type->discription, 180) }}</div>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-primary" href="{{ route('admin.categories.edit', $type->no) }}">Edit</a>
+                            <form action="{{ route('admin.categories.toggle', $type->no) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <a href="#" class="btn {{ $type->inactive_status == 0 ? 'toggle-enabled' : 'toggle-disabled' }} js-submit" role="button" data-confirm="{{ $type->inactive_status == 0 ? 'Disable this category?' : 'Enable this category?' }}">{{ $type->inactive_status == 0 ? 'Enabled' : 'Disabled' }}</a>
+                                <button type="submit" style="display:none" aria-hidden="true"></button>
+                            </form>
+                            <form action="{{ route('admin.categories.destroy', $type->no) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#" class="btn btn-danger js-submit" role="button" data-confirm="Remove this category?">Remove</a>
+                                <button type="submit" style="display:none" aria-hidden="true"></button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @else
             <p>No categories found.</p>
         @endif
@@ -95,3 +95,8 @@
         }
     }
 </script>
+@push('scripts')
+    <script>
+        // Handled by /js/adm/admin-actions.js (central modal + submit handlers)
+    </script>
+@endpush

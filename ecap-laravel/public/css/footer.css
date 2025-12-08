@@ -17,3 +17,7 @@ footer a{
     display: flex;
     justify-content: center;
 }
+
+/* Reserve space at the bottom so footer doesn't overlap page content */
+:root { --footer-height: 64px; }
+footer { height: var(--footer-height); box-sizing: border-box; }

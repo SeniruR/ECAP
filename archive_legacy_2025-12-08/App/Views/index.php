@@ -68,7 +68,7 @@
                 </div>
                 
             </div>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
             <?php $countermain++; ?>
         <?php endforeach; ?>
     <?php else: ?>
