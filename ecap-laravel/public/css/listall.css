@@ -1,0 +1,165 @@
+.notice {
+    text-align: center;
+    background-color: yellow;
+    padding: 10px;
+}
+.banner {
+    position: relative;
+    width: 100%;
+}
+.banner img {
+    width: 100%;
+}
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: inherit;
+    width: 70%;
+}
+
+.card-container-wrapper {
+    position: relative;
+    overflow-x: visible;
+    margin: 0px 15px 0px;
+}
+
+.card-container {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 20px 0px;
+    /* inner grid should not clip card shadows; outer wrapper manages scrolling */
+    overflow: visible;
+    max-height: 100%;
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 48px 18px;
+    }
+}
+
+.card-container a {
+    text-decoration: none;
+    color: black;
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.card-container a:hover {
+    transform: scale(1.05);
+    color: green;
+}
+
+.card {
+    height: 100%;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card:hover{ transform: translateY(-6px); box-shadow: 0 18px 48px rgba(0,0,0,0.12); }
+
+.card .media{ height:200px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfbf6); margin-bottom:12px; overflow:hidden; }
+.card .media img{ max-width:90%; max-height:90%; object-fit:contain; }
+
+.card .card-title{ font-weight:700; margin:6px 0 2px; color:#1b5e20; }
+.card .card-desc{ color:#41623b; font-size:14px; margin:6px 0 10px; min-height:36px; }
+.card .card-divider{ height:1px; background:#e6e6e6; margin:8px 0; }
+.card .card-price{ color:#145214; font-weight:700; padding:10px 0 4px; }
+
+.badge-new{ position:absolute; left:14px; top:14px; background:#2e7d32; color:#fff; padding:6px 8px; border-radius:8px; font-size:12px; }
+
+/* ensure cards are above separators and not clipped */
+.card{ position: relative; z-index: 2; }
+.line{ display:block; clear:both; height:1px; background:#ececec; margin:36px 0; border-radius:2px; }
+
+/* remove underline inside card anchors */
+.card a, .card a:link, .card a:visited, .card a:hover, .card a:active{ text-decoration:none !important; color:inherit; }
+
+.card .card-details {
+    white-space: normal;
+}
+
+.topic {
+    margin: 35px 15px 0px;
+    font-size: x-large;
+    text-align: center;
+}
+
+.topic h3 {
+    margin: 0px;
+}
+
+.topic-discription {
+    margin: 0 10%;
+    font-size: large;
+    color: #2E7D32;
+}
+
+.all-btn {
+    text-decoration: none;
+    font-size: initial;
+    font-weight: bold;
+    color: black;
+    border-radius: 20px;
+    border-style: solid;
+    padding: 5px;
+    border-width: 2px;
+    border-color: forestgreen;
+}
+
+.all-btn:hover {
+    color: green;
+}
+
+.hidden {
+    display: none;
+}
+
+.intro{
+    background-color: #2E7D32;
+    padding: 60px;
+    font-size: larger;
+    color: blanchedalmond;
+    text-align: center;
+}
+
+.intro p{
+    margin: 0;
+}
+
+.listall-main{
+    padding: 30px 10px;
+}
+
+/* Extra strong rules to ensure anchors wrapping cards don't show underlines */
+.card-container > a,
+.card-container a,
+.card-container a:link,
+.card-container a:visited,
+.card-container a:hover,
+.card-container a:active {
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+}
+.card-container a .card-title,
+.card-container a .card-desc,
+.card-container a .card-price {
+    text-decoration: none !important;
+}

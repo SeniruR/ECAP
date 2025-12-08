@@ -1,0 +1,23 @@
+footer {
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: large;
+    color: blanchedalmond;
+    background-color: #2E7D32;
+}
+
+footer a{
+    text-decoration: none;
+    color:blanchedalmond
+}
+
+.footerbody {
+    display: flex;
+    justify-content: center;
+}
+
+/* Reserve space at the bottom so footer doesn't overlap page content */
+:root { --footer-height: 64px; }
+footer { height: var(--footer-height); box-sizing: border-box; }
