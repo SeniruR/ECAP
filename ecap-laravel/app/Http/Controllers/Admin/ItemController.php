@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemImage;
 use App\Models\ItemType;
-use Illuminate\Http\Request;
+use App\Http\Requests\ItemRequest as ItemRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ItemController extends Controller
 {
@@ -33,33 +34,10 @@ class ItemController extends Controller
         return view('admin.items.create', compact('types', 'item'));
     }
 
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
-        // Determine if this is an update (has `no`) or create
-        $isUpdate = (bool) $request->input('no');
-
-        $rules = [
-            'name' => ['required', 'string', 'max:255'],
-            'short_dis' => ['required', 'string'],
-            'long_dis' => ['required', 'string'],
-            'type' => ['required', 'integer', 'exists:itemtypes,no'],
-            'content' => ['nullable', 'string'],
-            'benefits' => ['nullable', 'string'],
-            'trademark' => ['nullable', 'string', 'max:255'],
-            'price' => ['required', 'numeric', 'min:0'],
-        ];
-
-        if ($isUpdate) {
-            // images are optional on update; may append new images
-            $rules['images'] = ['sometimes', 'array', 'max:8'];
-            $rules['images.*'] = ['sometimes', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'];
-        } else {
-            // images required on create
-            $rules['images'] = ['required', 'array', 'max:8'];
-            $rules['images.*'] = ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'];
-        }
-
-        $validated = $request->validate($rules);
+        // validation is handled by ItemRequest
+        $validated = $request->validated();
 
         $no = $request->input('no');
 
@@ -91,6 +69,13 @@ class ItemController extends Controller
 
             // handle uploaded images (append)
             foreach ($request->file('images', []) as $image) {
+                // Verify file is a real image
+                $tmpPath = $image->getPathname();
+                $imgInfo = @getimagesize($tmpPath);
+                if ($imgInfo === false) {
+                    throw ValidationException::withMessages(['images' => 'One or more uploaded files are not valid images.']);
+                }
+
                 $filename = Str::uuid()->toString().'.'.$image->getClientOriginalExtension();
                 $path = $image->storeAs('products', $filename, 'public');
                 ItemImage::create([
