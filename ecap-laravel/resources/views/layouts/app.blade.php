@@ -6,6 +6,14 @@
     <title>ECAP</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <!-- Favicons and web app manifest -->
+    <link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icons/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('icons/site.webmanifest') }}">
+    <meta name="theme-color" content="#ffffff">
     @stack('styles')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
