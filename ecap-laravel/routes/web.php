@@ -9,11 +9,12 @@ use App\Http\Controllers\Admin\AnnouncementController as AdminAnnouncementContro
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ItemController::class, 'index'])->name('home');
+// Contact routes separated into their own file
+require __DIR__ . '/web_contacts.php';
 Route::get('/listall', [ItemController::class, 'listAll'])->name('listall');
 Route::get('/item/{no}', [ItemController::class, 'show'])->name('item.show');
 Route::view('/about', 'about')->name('about');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact');
-Route::post('/contact', [App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/dashboard', function () {
     if (auth()->check() && auth()->user()->is_admin) {
