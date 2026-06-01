@@ -4,6 +4,9 @@ services:
     runtime: docker
     plan: free
     branch: staging
+    rootDir: ecap-laravel
+    dockerfilePath: ecap-laravel/Dockerfile
+    dockerContext: ecap-laravel
     autoDeployTrigger: checksPass
     healthCheckPath: /
     envVars:
