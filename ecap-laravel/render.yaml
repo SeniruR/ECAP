@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: ecap-staging
+    runtime: docker
+    plan: free
+    branch: staging
+    autoDeployTrigger: checksPass
+    healthCheckPath: /
+    envVars:
+      - key: APP_NAME
+        value: ECAP
+      - key: APP_ENV
+        value: staging
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: LOG_LEVEL
+        value: info
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/www/html/database/database.sqlite
+      - key: RUN_MIGRATIONS
+        value: "true"

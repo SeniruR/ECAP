@@ -20,6 +20,21 @@ mkdir -p "$STORAGE_PATH" "$APP_ROOT/bootstrap/cache" || true
 chown -R www-data:www-data "$STORAGE_PATH" "$APP_ROOT/bootstrap/cache" || true
 chmod -R 775 "$STORAGE_PATH" "$APP_ROOT/bootstrap/cache" || true
 
+# Prepare the SQLite database file when the service is configured to use SQLite.
+if [ "${DB_CONNECTION:-}" = "sqlite" ]; then
+  SQLITE_DB_PATH="${DB_DATABASE:-$APP_ROOT/database/database.sqlite}"
+  case "$SQLITE_DB_PATH" in
+    :memory:)
+      ;;
+    *)
+      mkdir -p "$(dirname "$SQLITE_DB_PATH")" || true
+      touch "$SQLITE_DB_PATH" || true
+      chown www-data:www-data "$SQLITE_DB_PATH" || true
+      chmod 664 "$SQLITE_DB_PATH" || true
+      ;;
+  esac
+fi
+
 # Ensure public/storage symlink exists and points to storage/app/public
 mkdir -p "$PUBLIC_PATH"
 mkdir -p "$STORAGE_PATH/app/public"

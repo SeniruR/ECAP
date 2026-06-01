@@ -1,3 +1,16 @@
+FROM node:22-bookworm-slim AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json vite.config.js postcss.config.js tailwind.config.js ./
+
+RUN npm ci
+
+COPY resources ./resources
+COPY public ./public
+
+RUN npm run build
+
 # Production Dockerfile for Laravel app running on Apache + PHP-FPM
 FROM php:8.4-apache-bullseye
 
@@ -10,9 +23,10 @@ RUN apt-get update \
         libpng-dev \
         libonig-dev \
         libxml2-dev \
+        libsqlite3-dev \
         curl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo_mysql zip gd \
+    && docker-php-ext-install pdo_mysql pdo_sqlite sqlite3 zip gd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -31,6 +45,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 
 # Copy application source
 COPY . .
+
+# Copy the built frontend assets from the build stage.
+COPY --from=frontend /app/public/build ./public/build
 
 # Copy and install the entrypoint
 COPY docker-entrypoint.sh /var/www/html/docker-entrypoint.sh
