@@ -5,8 +5,8 @@ services:
     plan: free
     branch: main
     rootDir: ecap-laravel
-    dockerfilePath: ecap-laravel/Dockerfile
-    dockerContext: ecap-laravel
+    dockerfilePath: Dockerfile
+    dockerContext: .
     autoDeployTrigger: checksPass
     healthCheckPath: /
     envVars:
