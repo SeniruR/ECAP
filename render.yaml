@@ -3,7 +3,7 @@ services:
     name: ecap-staging
     runtime: docker
     plan: free
-    branch: staging
+    branch: main
     rootDir: ecap-laravel
     dockerfilePath: ecap-laravel/Dockerfile
     dockerContext: ecap-laravel
