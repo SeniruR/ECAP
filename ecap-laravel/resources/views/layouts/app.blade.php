@@ -27,7 +27,7 @@
             <a href="{{ route('about') }}" class="button">About</a>
             <a href="{{ route('contact') }}" class="button">Contact Us</a>
             @auth
-                @if(auth()->user()->is_admin)
+                @if(auth()->user()?->is_admin)
                     <a href="{{ route('admin.dashboard') }}" class="button">Dashboard</a>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
@@ -49,7 +49,7 @@
             <li><a href="{{ route('about') }}">About</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
             @auth
-                @if(auth()->user()->is_admin)
+                @if(auth()->user()?->is_admin)
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 @endif
                 <li>
