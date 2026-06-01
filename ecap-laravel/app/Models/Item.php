@@ -41,4 +41,9 @@ class Item extends Model
     {
         return $this->hasMany(ItemImage::class, 'itemno', 'no')->orderBy('no');
     }
+
+    public function itemImage()
+    {
+        return $this->hasMany(ItemImage::class, 'itemno', 'no')->orderBy('no');
+    }
 }
