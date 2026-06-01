@@ -45,6 +45,9 @@ find "$STORAGE_PATH/app/public" -type d -exec chmod 775 {} + || true
 find "$STORAGE_PATH/app/public" -type f -exec chmod 644 {} + || true
 chmod 775 "$PUBLIC_STORAGE_LINK" || true
 
+# Clear stale cached views/config/routes from the image before booting.
+php artisan optimize:clear || true
+
 # Optionally run migrations if RUN_MIGRATIONS=true
 if [ "$RUN_MIGRATIONS" = "true" ]; then
   # Allow failure so container still starts if migrations have issues during deploy
