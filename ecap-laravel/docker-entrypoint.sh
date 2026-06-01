@@ -45,6 +45,12 @@ find "$STORAGE_PATH/app/public" -type d -exec chmod 775 {} + || true
 find "$STORAGE_PATH/app/public" -type f -exec chmod 644 {} + || true
 chmod 775 "$PUBLIC_STORAGE_LINK" || true
 
+# Remove compiled Blade and framework cache files so the container always boots
+# from the current source tree rather than stale artifacts baked into the image.
+rm -f "$APP_ROOT/storage/framework/views"/*.php || true
+rm -f "$APP_ROOT/storage/framework/cache"/*.php || true
+rm -f "$APP_ROOT/bootstrap/cache"/*.php || true
+
 # Clear stale cached views/config/routes from the image before booting.
 php artisan optimize:clear || true
 
