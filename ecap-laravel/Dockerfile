@@ -26,7 +26,7 @@ RUN apt-get update \
         libsqlite3-dev \
         curl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo_mysql pdo_sqlite sqlite3 zip gd \
+    && docker-php-ext-install pdo_mysql pdo_sqlite zip gd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
